@@ -1,6 +1,6 @@
 <?php
 
-namespace PixelDomPdf;
+namespace PixelDomPdf\DomPdfExntendingCode;
 
 use Dompdf\Dompdf;
 

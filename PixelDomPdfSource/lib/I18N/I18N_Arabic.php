@@ -1,6 +1,6 @@
 <?php
 
-namespace PixelDomPdf\I18N;
+namespace PixelDomPdf\Lib\I18N;
 
 use ReflectionMethod;
 
@@ -223,8 +223,8 @@ class I18N_Arabic
         }
 
         $this->myFile  = $library;
-        $this->myClass = 'App\CustomLibs\I18N\Arabic\I18N_Arabic_' . $library;
-		$class         = 'App\CustomLibs\I18N\Arabic\I18N_Arabic_' . $library;
+        $this->myClass = 'PixelDomPdf\Lib\I18N\Arabic\I18N_Arabic_' . $library;
+		$class         = 'PixelDomPdf\Lib\I18N\Arabic\I18N_Arabic_' . $library;
 
         /*
 		if (!$this->_useAutoload) {

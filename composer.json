@@ -17,7 +17,8 @@
         },
         "classmap": [
             "DomPdfSource/lib/",
-            "PixelDomPdfSource/lib/I18N"
+            "PixelDomPdfSource/lib/I18N",
+            "PixelDomPdfSource/lib/I18N/Arabic"
         ]
     },
     "autoload-dev": {

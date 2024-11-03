@@ -2,7 +2,7 @@
 
 namespace PixelDomPdf\DomPdfExntendingCode;
 
-use PixelDomPdf\I18N\I18N_Arabic;
+use PixelDomPdf\Lib\I18N\I18N_Arabic;
 
 class CPDFTextFilteringExtender
 {

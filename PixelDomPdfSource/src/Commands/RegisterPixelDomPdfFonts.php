@@ -4,7 +4,7 @@ namespace PixelDomPdf\Commands;
 
 use Dompdf\FontMetrics;
 use Illuminate\Console\Command;
-use PixelDomPdf\PixelDomPdf;
+use PixelDomPdf\DomPdfExntendingCode\PixelDomPdf;
 use PixelDomPdf\PixelDomPdfInstructionComponents\FontInfoComponent;
 
 class RegisterPixelDomPdfFonts extends Command

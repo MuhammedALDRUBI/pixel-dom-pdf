@@ -5,7 +5,7 @@ namespace PixelDomPdf\ServiceProviders;
 use Dompdf\Options;
 use Illuminate\Support\ServiceProvider;
 use PixelDomPdf\Commands\RegisterPixelDomPdfFonts;
-use PixelDomPdf\PixelDomPdf;
+use PixelDomPdf\DomPdfExntendingCode\PixelDomPdf;
 
 class PixelDomPdfServiceProvider extends ServiceProvider
 {
@@ -28,13 +28,14 @@ class PixelDomPdfServiceProvider extends ServiceProvider
     public function boot()
     {   
         $this->allowConfigPublishing();
+        $this->defineCommands();
     }
 
     protected function allowConfigPublishing() : void
     {
         $this->publishes(
             [
-                $this->getPackageConfiAbsolutePath() => config_path("pixel-dompdf") 
+                $this->getPackageConfiAbsolutePath() => config_path("pixel-dompdf.php") 
             ] ,
             'pixel-dompdf-config'
         );

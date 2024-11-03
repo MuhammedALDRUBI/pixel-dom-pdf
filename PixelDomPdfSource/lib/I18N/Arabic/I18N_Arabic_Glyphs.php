@@ -1,6 +1,6 @@
 <?php
 
-namespace PixelDomPdf\I18N\Arabic;
+namespace PixelDomPdf\Lib\I18N\Arabic;
 
 use PixelDomPdf\I18NArabicGlyphsPreConvertExtender;
 
