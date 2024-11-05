@@ -8,22 +8,57 @@ use PixelDomPdf\Interfaces\PixelPdfNeedsProvider;
 class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 {
 
+    protected bool $needsRendering = true;
+
+    protected function hasRendered() : void
+    {
+        $this->needsRendering = false;
+    }
+    protected function needsRendering() : void
+    {
+        $this->needsRendering = true;
+    }
+    protected function DoesItNeedRendering() : bool
+    {
+        return $this->needRendering;
+    }
     public function loadView(View $view)
     {
         $html = $view->render();
         $this->loadHtml($html);
     }
 
+    public function loadHtml($str, $encoding = null)
+    {
+        parent::loadHtml($str, $encoding );
+        $this->needsRendering();
+    }
+
     public function stream($filename = "document.pdf", $options = [])
     {
-        $this->render();
+        if($this->DoesItNeedRendering())
+        {
+            $this->render();  
+        }
         parent::stream($filename , $options);
     }
 
     public function output($options = [])
     {
-        $this->render();
+        if($this->DoesItNeedRendering())
+        {
+            $this->render();  
+        }
         return parent::output($options);
     }
+     /**
+     * Renders the HTML to PDF
+     */
+    public function render()
+    {
+        parent::render();
+        $this->hasRendered();
+    }
     
+
 }
