@@ -4,6 +4,7 @@ namespace PixelDomPdf\DomPdfExntendingCode;
 
 use Dompdf\Dompdf;
 use PixelDomPdf\Interfaces\PixelPdfNeedsProvider;
+use Illuminate\Contracts\View\View;
 
 class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 {
