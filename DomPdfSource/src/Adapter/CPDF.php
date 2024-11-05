@@ -174,7 +174,6 @@ class CPDF implements Canvas
             $this->_dompdf = $dompdf;
         }
 
-        dump( $this->_dompdf->getOptions()->getFontCache());
         $this->_pdf = new \Dompdf\Cpdf(
             $size,
             true,

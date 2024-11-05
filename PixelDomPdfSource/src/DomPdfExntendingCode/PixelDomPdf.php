@@ -3,54 +3,27 @@
 namespace PixelDomPdf\DomPdfExntendingCode;
 
 use Dompdf\Dompdf;
+use PixelDomPdf\Interfaces\PixelPdfNeedsProvider;
 
-class PixelDomPdf extends Dompdf
+class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 {
 
-     /**
-     * Class constructor
-     *
-     * @param Options|array|null $options
-     */
-    public function __construct($options = null)
+    public function loadView(View $view)
     {
-        parent::__construct($options);
-        //$this->setPixelDefaultFont();
+        $html = $view->render();
+        $this->loadHtml($html);
     }
 
-    public function getPixelDefaultFontName() : ?string
+    public function stream($filename = "document.pdf", $options = [])
     {
-        return config("pixel-dompdf.pixel-default-font-name");
+        $this->render();
+        parent::stream($filename , $options);
+    }
+
+    public function output($options = [])
+    {
+        $this->render();
+        return parent::output($options);
     }
     
-    public function getPixelDefaultFontVariantPaths() : array
-    {
-        return config("pixel-dompdf.pixel-default-font-variant-paths" )  ;
-    }
-
-    protected function sanitizeFontVariantPaths(array $paths) : array
-    {
-        return array_map(function($path){
-                    // we need the path until the font name ... it will be append with ufm exntension by OpenFont dompdf's method
-                    return rtrim($path , ".ttf"); 
-
-                } , $paths);
-    }
-    protected function setPixelDefaultFont() : void
-    {
-        $defaultFont = $this->getPixelDefaultFontName();
-        $defaulltFontVariantPaths = $this->getPixelDefaultFontVariantPaths();
-
-        if(
-            $defaultFont 
-            &&
-            !in_array(  $defaultFont , $this->getFontMetrics()->getFontFamilies())
-            &&
-            (is_array($defaulltFontVariantPaths) && !empty($defaulltFontVariantPaths))
-          )
-        { 
-            $defaulltFontVariantPaths = $this->sanitizeFontVariantPaths($defaulltFontVariantPaths);
-            $this->getFontMetrics()->setFontFamily($defaultFont, $defaulltFontVariantPaths);
-        }
-    }
 }
