@@ -21,7 +21,7 @@ class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
     }
     protected function DoesItNeedRendering() : bool
     {
-        return $this->needRendering;
+        return $this->needsRendering;
     }
     public function loadView(View $view)
     {
