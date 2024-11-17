@@ -8,7 +8,8 @@ use Illuminate\Contracts\View\View;
 
 class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 {
-
+    const PixelDefaultFontFolder = __DIR__ . "/../PixelDefaultFonts";
+    
     protected bool $needsRendering = true;
 
     protected function hasRendered() : void
@@ -60,6 +61,5 @@ class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
         parent::render();
         $this->hasRendered();
     }
-    
-
+     
 }

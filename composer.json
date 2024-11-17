@@ -19,6 +19,9 @@
             "DomPdfSource/lib/",
             "PixelDomPdfSource/lib/I18N",
             "PixelDomPdfSource/lib/I18N/Arabic"
+        ],
+        "files": [
+             "PixelDomPdfSource/src/helpers/helpers.php"
         ]
     },
     "autoload-dev": {

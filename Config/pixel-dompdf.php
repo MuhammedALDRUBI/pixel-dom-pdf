@@ -1,5 +1,6 @@
 <?php
 
+use PixelDomPdf\DomPdfExntendingCode\PixelDomPdf;
 use PixelDomPdf\PixelDomPdfInstructionComponents\FontInfoComponent;
 
 return [
@@ -8,10 +9,10 @@ return [
     'public_path' => null,  // Override the public path if needed
 
     "pixel-fonts" => [
-        FontInfoComponent::create("Vazirmatn" , "normal" , storage_path("fonts/Vazirmatn.ttf") , "normal"),// Regular
-        FontInfoComponent::create("Vazirmatn" , "bold" , storage_path("fonts/Vazirmatn-Bold.ttf") , "normal"), // Bold
-        FontInfoComponent::create("Vazirmatn" , "medium" ,storage_path('fonts/Vazirmatn-Medium.ttf') , "normal"),// Medium
-        FontInfoComponent::create("Vazirmatn" , "semibold" ,storage_path('fonts/Vazirmatn-SemiBold.ttf') , "normal")// SemiBold
+        FontInfoComponent::create("Vazirmatn" , "normal" , pixelDefaultFontsPath("Vazirmatn.ttf") , "normal"),// Regular
+        FontInfoComponent::create("Vazirmatn" , "bold" , pixelDefaultFontsPath("Vazirmatn-Bold.ttf") , "normal"), // Bold
+        FontInfoComponent::create("Vazirmatn" , "medium" , pixelDefaultFontsPath("Vazirmatn-Medium.ttf")  , "normal"),// Medium
+        FontInfoComponent::create("Vazirmatn" , "semibold" , pixelDefaultFontsPath("Vazirmatn-SemiBold.ttf") , "normal")// SemiBold
     ],
     
     'options' => [ 
@@ -39,7 +40,7 @@ return [
          * Times-Roman, Times-Bold, Times-BoldItalic, Times-Italic,
          * Symbol, ZapfDingbats.
          */
-        "font_dir" => storage_path('fonts'), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
+        "font_dir" => pixelDefaultFontsPath(), // advised by dompdf (https://github.com/dompdf/dompdf/pull/782)
 
         /**
          * The location of the DOMPDF font cache directory
@@ -49,7 +50,7 @@ return [
          *
          * Note: This directory must exist and be writable by the webserver process.
          */
-        "font_cache" => storage_path('fonts'),
+        "font_cache" => pixelDefaultFontsPath() ,
 
         //You can define the pixel default font by defining "pixel-defzult-font-name"  , "pixel-default-font-variant-paths"  
         // config keys found above .... they are related for PixelDomPdf so they are not included to options array
