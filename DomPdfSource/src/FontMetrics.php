@@ -114,12 +114,12 @@ class FontMetrics
     {
         $file = $this->options->getRootDir() . "/lib/fonts/installed-fonts.dist.json";
         $this->bundledFonts = json_decode(file_get_contents($file), true);
-
+ 
         if (is_readable($this->getUserFontsFilePath())) {
             $this->userFonts = json_decode(file_get_contents($this->getUserFontsFilePath()), true);
         } else {
             $this->loadFontFamiliesLegacy();
-        }
+        } 
     }
 
     private function loadFontFamiliesLegacy()
@@ -592,7 +592,7 @@ class FontMetrics
      * @return string
      */
     public function getUserFontsFilePath()
-    {
+    { 
         return $this->options->getFontDir() . '/' . self::USER_FONTS_FILE;
     }
 
@@ -601,7 +601,7 @@ class FontMetrics
      * @return $this
      */
     public function setOptions(Options $options)
-    {
+    { 
         $this->options = $options;
         unset($this->fontFamilies);
         return $this;

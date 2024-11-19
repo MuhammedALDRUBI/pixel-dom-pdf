@@ -4853,14 +4853,13 @@ EOT;
         if (!$this->numFonts) {
             $this->selectFont($this->defaultFont);
         }
-
+        
         /**
          * External code by our package
          * will process arabic text if it is exists
          */
         $text = CPDFTextFilteringExtender::processText($text);
     
-
         if ($convert_encoding) {
             $cf = $this->currentFont;
             if (isset($this->fonts[$cf]) && $this->fonts[$cf]['isUnicode']) {
