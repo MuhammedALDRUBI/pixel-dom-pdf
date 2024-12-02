@@ -52,6 +52,14 @@
           ]
         }
     },
+    "scripts": {
+        "post-install-cmd": [
+            "PixelDomPdf\\ComposerScripts::installDefaultFont"
+        ],
+        "post-update-cmd" :[
+            "PixelDomPdf\\ComposerScripts::installDefaultFont"
+        ]
+    },
     "suggest": {
         "ext-gd": "Needed to process images",
         "ext-imagick": "Improves image processing performance",
