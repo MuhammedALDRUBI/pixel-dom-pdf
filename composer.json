@@ -54,10 +54,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "PixelDomPdf\\ComposerScripts::installDefaultFont"
+            "php artisan pixel-dom-pdf:register-fonts"
         ],
         "post-update-cmd" :[
-            "PixelDomPdf\\ComposerScripts::installDefaultFont"
+            "php artisan pixel-dom-pdf:register-fonts"
         ]
     },
     "suggest": {
