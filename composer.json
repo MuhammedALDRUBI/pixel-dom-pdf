@@ -55,12 +55,6 @@
     "scripts": {
         "post-autoload-dump" :[
             "@php artisan pixel-dom-pdf:register-fonts"
-        ],
-        "post-install-cmd": [
-            "@php artisan pixel-dom-pdf:register-fonts"
-        ],
-        "post-update-cmd": [
-            "@php artisan pixel-dom-pdf:register-fonts"
         ]
     },
     "suggest": {
