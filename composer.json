@@ -54,10 +54,10 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php artisan pixel-dom-pdf:register-fonts"
+            "@php artisan pixel-dom-pdf:register-fonts"
         ],
         "post-update-cmd" :[
-            "php artisan pixel-dom-pdf:register-fonts"
+            "@php artisan pixel-dom-pdf:register-fonts"
         ]
     },
     "suggest": {
