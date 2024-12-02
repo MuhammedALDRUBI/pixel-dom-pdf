@@ -67,6 +67,7 @@ class RegisterPixelDomPdfFonts extends Command
      */
     public function handle()
     {
+        $this->info("Handling default fonts command now");
         $dompdf = $this->initPixelDomPdf();
         $fontMetrics = $dompdf->getFontMetrics();
         $this->registerPixelFonts($fontMetrics);
