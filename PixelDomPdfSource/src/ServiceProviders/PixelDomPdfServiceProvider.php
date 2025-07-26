@@ -54,6 +54,7 @@ class PixelDomPdfServiceProvider extends ServiceProvider
             ]);
         }
     }
+    
     protected function mergePackageConfig() : void
     {
         $this->mergeConfigFrom($this->getPackageConfiAbsolutePath(), 'pixel-dompdf');

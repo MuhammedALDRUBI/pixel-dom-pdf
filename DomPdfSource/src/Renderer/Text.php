@@ -6,7 +6,6 @@
  */
 namespace Dompdf\Renderer;
 
-use App\CustomLibs\I18N\I18N_Arabic;
 use Dompdf\Adapter\CPDF;
 use Dompdf\Frame;
 
@@ -45,13 +44,14 @@ class Text extends AbstractRenderer
     {
         $style = $frame->get_style();
         $text = $frame->get_text();
-       
+
         if ($text === "") {
             return;
         }
+
         $this->_set_opacity($frame->get_opacity($style->opacity));
 
-        list($x, $y) = $frame->get_position();
+        [$x, $y] = $frame->get_position();
         $cb = $frame->get_containing_block();
 
         $ml = $style->margin_left;
@@ -70,8 +70,8 @@ class Text extends AbstractRenderer
           array("{PAGE_NUM}"),
           array($this->_canvas->get_page_number()),
           $text
-        );*/ 
-        
+        );*/
+
         $this->_canvas->text($x, $y, $text,
             $font, $size,
             $style->color, $word_spacing, $letter_spacing);
@@ -150,9 +150,12 @@ class Text extends AbstractRenderer
             $this->_canvas->line($x1, $deco_y, $x2, $deco_y, $color, $line_thickness);
         }
 
-        if ($this->_dompdf->getOptions()->getDebugLayout() && $this->_dompdf->getOptions()->getDebugLayoutLines()) {
-            $text_width = $this->_dompdf->getFontMetrics()->getTextWidth($text, $font, $size, $word_spacing, $letter_spacing);
-            $this->_debug_layout([$x, $y, $text_width, $frame_font_size], "orange", [0.5, 0.5]);
+        $options = $this->_dompdf->getOptions();
+
+        if ($options->getDebugLayout() && $options->getDebugLayoutLines()) {
+            $fontMetrics = $this->_dompdf->getFontMetrics();
+            $textWidth = $fontMetrics->getTextWidth($text, $font, $size, $word_spacing, $letter_spacing);
+            $this->debugLayout([$x, $y, $textWidth, $frame_font_size], "orange", [0.5, 0.5]);
         }
     }
 }

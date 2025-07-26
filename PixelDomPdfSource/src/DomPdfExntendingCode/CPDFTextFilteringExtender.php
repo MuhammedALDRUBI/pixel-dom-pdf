@@ -149,6 +149,7 @@ class CPDFTextFilteringExtender
     {
         return preg_match('/^[A-Za-z0-9]*$/', $word);
     }
+    
     public static function DoesContainArabicText($text)
     { 
         return preg_match('/(?:\p{Arabic}+[\p{Arabic}\s]*\.*)+/u', $text);
