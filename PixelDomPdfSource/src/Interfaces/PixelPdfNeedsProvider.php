@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 interface PixelPdfNeedsProvider
 {
 
-    public function loadView(View $view);
+    public function useView(View $view) :PixelPdfNeedsProvider;
 
     /**
      * Loads an HTML string
@@ -16,7 +16,7 @@ interface PixelPdfNeedsProvider
      * @param string $str HTML text to load
      * @param string $encoding Encoding of $str
      */
-    public function loadHtml($str, $encoding = null);
+    public function useHtml($str, $encoding = null)  :PixelPdfNeedsProvider;
 
 
     
@@ -32,7 +32,7 @@ interface PixelPdfNeedsProvider
      *
      * @return string|null
      */
-    public function output($options = []);
+    public function exportDataFile($options = []) : string|null;
 
      /**
      * Streams the PDF to the client.
@@ -50,5 +50,5 @@ interface PixelPdfNeedsProvider
      * @param string $filename the name of the streamed file
      * @param array $options header options (see above)
      */
-    public function stream($filename = "document.pdf", $options = []);
+    public function downloadDataFile($filename = "document.pdf", $options = []) : void;
 }
