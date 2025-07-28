@@ -5,6 +5,7 @@ namespace PixelDomPdf\DomPdfExntendingCode;
 use Dompdf\Dompdf;
 use PixelDomPdf\Interfaces\PixelPdfNeedsProvider;
 use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 {
@@ -48,29 +49,38 @@ class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
         $this->needsRendering();
     }
 
-    protected function renderHTMLOnNeed() : void
-    {
-        if($this->DoesItNeedRendering())
-        {
-            $this->render();  
-        }
-    }
-
     public function stream($filename = "document.pdf", $options = [])
     {
-        $this->renderHTMLOnNeed();
+        $this->render();
         parent::stream($filename , $options);
     }
 
-    //an alias method for return type and name convention
-    public function downloadDataFile($filename = "document.pdf", $options = []) : void
+    /**
+     * another functinality of streaming for laravel , we kept return type and name convention for our packages
+     */
+    public function downloadDataFile($filename = "document.pdf", $options = []) : StreamedResponse
     {
-        $this->stream($filename , $options);
+        $content = $this->output($options);
+        
+        return new StreamedResponse(
+                    function() use ($content)
+                    {
+                        echo $content;
+                    },
+                    200,
+                    [
+                        'Content-Type' => 'application/pdf',
+                        'Content-Disposition' => ($options['Attachment'] ?? true ? 'attachment' : 'inline') . '; filename="' . $filename . '"',
+                    ]
+                );
     }
 
+    /**
+     * Returns the PDF as a string.
+     */
     public function output($options = [])
     {
-        $this->renderHTMLOnNeed();
+        $this->render();
         parent::output($options);
     }
 
@@ -82,9 +92,12 @@ class PixelDomPdf extends Dompdf implements PixelPdfNeedsProvider
 
     public function render()
     {
-        parent::render();
-        
-        $this->hasRendered();
+        if($this->DoesItNeedRendering())
+        {
+            parent::render();
+            
+            $this->hasRendered();
+        }
     }
     
      /**

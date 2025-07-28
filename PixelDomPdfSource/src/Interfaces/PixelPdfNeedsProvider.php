@@ -3,6 +3,7 @@
 namespace PixelDomPdf\Interfaces;
 
 use Illuminate\Contracts\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 interface PixelPdfNeedsProvider
 {
@@ -50,5 +51,5 @@ interface PixelPdfNeedsProvider
      * @param string $filename the name of the streamed file
      * @param array $options header options (see above)
      */
-    public function downloadDataFile($filename = "document.pdf", $options = []) : void;
+    public function downloadDataFile($filename = "document.pdf", $options = []) : StreamedResponse;
 }
